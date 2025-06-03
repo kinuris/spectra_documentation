@@ -415,18 +415,21 @@
             <h4>KPI 1: Order Fulfillment Efficiency</h4>
             <ul>
                 <li><strong>Description:</strong> Measures the percentage of orders successfully processed from creation to completion within target timeframes. This KPI tracks the system's ability to handle the complete order lifecycle efficiently, from initial order placement through inventory validation, order processing, and final delivery confirmation.</li>
+                <li><strong>Mock Responsibility:</strong> Tracked by the Mock Operations Manager.</li>
                 <li><strong>Measurement Method:</strong> Calculated as (Orders Completed Within Target Time / Total Orders) × 100%. Data is collected from Django Order model timestamps tracking order status transitions (PENDING → PROCESSING → SHIPPED → DELIVERED). The system monitors completion times against established SLA targets for each order status phase.</li>
                 <li><strong>Target Value:</strong> ≥ 95% for excellent performance, with acceptable performance at 85-94%. Orders should progress through all status phases within defined timeframes to meet customer expectations and operational efficiency goals.</li>
             </ul>
             <h4>KPI 2: Inventory Accuracy Rate</h4>
             <ul>
                 <li><strong>Description:</strong> Measures the percentage of product variants where system-recorded quantities match actual available stock levels. This KPI ensures data integrity in inventory management, preventing overselling, stockouts, and customer dissatisfaction caused by inaccurate inventory information.</li>
+                <li><strong>Mock Responsibility:</strong> Tracked by the Mock Inventory Control Specialist.</li>
                 <li><strong>Measurement Method:</strong> Calculated as (Product Variants with Accurate Stock / Total Active Product Variants) × 100%. The system validates stock accuracy through real-time inventory tracking, automated adjustment logging via InventoryAdjustment model, and periodic reconciliation between system quantities and physical stock counts.</li>
                 <li><strong>Target Value:</strong> ≥ 98% for excellent performance, with acceptable performance at 95-97%. High accuracy is essential for maintaining customer trust and operational efficiency in the fashion retail environment where size and color combinations require precise tracking.</li>
             </ul>
             <h4>KPI 3: System Performance Score</h4>
             <ul>
                 <li><strong>Description:</strong> A composite score measuring system responsiveness, reliability, and user experience quality. This KPI evaluates the technical performance aspects that directly impact user satisfaction and system usability across all user roles (Admin, Stock Manager, Sales Staff).</li>
+                <li><strong>Mock Responsibility:</strong> Tracked by the Mock IT/System Administrator.</li>
                 <li><strong>Measurement Method:</strong> Calculated as (Page Load Performance × 0.4) + (System Uptime × 0.3) + (User Task Completion × 0.3). Components include average page response times under 2 seconds, system availability above 99.5%, and successful completion of key user workflows without errors. Monitoring includes Django request logs, database query performance metrics, and user session analytics.</li>
                 <li><strong>Target Value:</strong> ≥ 90/100 overall score. Individual component targets include page load times under 2 seconds (95th percentile), system uptime ≥ 99.5% monthly, and task completion rate ≥ 95% for critical user workflows.</li>
             </ul>
