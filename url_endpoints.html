@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectra Clothing - URL Endpoints Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .version {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .intro {
+            background-color: #f9f9f9;
+            border-left: 5px solid #2c3e50;
+            padding: 1rem;
+            margin: 1rem 0 2rem;
+            border-radius: 0 5px 5px 0;
+        }
+        .endpoint-group {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .endpoint-group h2 {
+            color: #2c3e50;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+        }
+        .endpoint {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 3px solid #3498db;
+            background-color: #f9f9f9;
+            border-radius: 3px;
+        }
+        .endpoint-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .endpoint h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+        .method {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .method.get {
+            background-color: #61affe;
+            color: white;
+        }
+        .method.post {
+            background-color: #49cc90;
+            color: white;
+        }
+        .url {
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #e83e8c;
+            background-color: #f1f1f1;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            margin: 0.5rem 0;
+        }
+        .description {
+            margin-top: 0.5rem;
+        }
+        .parameters {
+            margin: 1rem 0;
+        }
+        .parameters h5 {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: normal;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 0.1rem 0.3rem;
+            background-color: #f1f1f1;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        .notes {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .url-tree {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #282c34;
+            color: #ABB2BF;
+            padding: 1rem;
+            border-radius: 5px;
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.4;
+            margin: 1.5rem 0;
+        }
+        .navbar {
+            background-color: #34495e;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        .nav-brand {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Spectra Clothing URL Endpoints</h1>
+        <div class="version">Documentation - Last Updated: June 7, 2025</div>
+    </header>
+
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">Spectra Clothing</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#accounts">Accounts</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#suppliers">Suppliers</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <div class="intro">
+                <p>This documentation provides a comprehensive reference for all URL endpoints in the Spectra Clothing management system. The system follows a modular approach with separate apps for different business domains.</p>
+                <p>All URLs in this system are web UI endpoints that return HTML responses. The system does not currently have a REST API, but instead uses traditional Django views to render templates.</p>
+            </div>
+
+            <h3>URL Structure Tree</h3>
+            <div class="url-tree">
+/ (Root - redirects to dashboard)
+|
+├── /admin/ (Django Admin Site)
+|
+├── /accounts/ (User Authentication & Management)
+|   ├── /login/
+|   ├── /logout/
+|   ├── /profile/
+|   ├── /users/
+|   ├── /users/add/
+|   ├── /users/&lt;id&gt;/edit/
+|   └── /users/&lt;id&gt;/delete/
+|
+├── /products/ (Product Management)
+|   ├── /add/
+|   ├── /&lt;id&gt;/ (Product Details)
+|   ├── /&lt;id&gt;/edit/
+|   ├── /&lt;id&gt;/force-update/
+|   ├── /&lt;id&gt;/simple-edit/
+|   ├── /&lt;id&gt;/delete/
+|   ├── /image/&lt;id&gt;/delete/
+|   ├── /categories/
+|   ├── /categories/add/
+|   ├── /categories/&lt;id&gt;/edit/
+|   └── /categories/&lt;id&gt;/delete/
+|
+├── /inventory/ (Inventory Management)
+|   ├── /variants/
+|   ├── /variants/add/
+|   ├── /variants/&lt;id&gt;/
+|   ├── /variants/&lt;id&gt;/edit/
+|   ├── /variants/&lt;id&gt;/delete/
+|   ├── /adjustments/
+|   ├── /adjustments/add/
+|   ├── /sizes/
+|   ├── /sizes/add/
+|   ├── /sizes/&lt;id&gt;/edit/
+|   ├── /sizes/&lt;id&gt;/delete/
+|   ├── /colors/
+|   ├── /colors/add/
+|   ├── /colors/&lt;id&gt;/edit/
+|   ├── /colors/&lt;id&gt;/delete/
+|   └── /api/product-variants/ (AJAX endpoint)
+|
+├── /orders/ (Order Management)
+|   ├── /add/
+|   ├── /&lt;id&gt;/ (Order Details)
+|   ├── /&lt;id&gt;/edit/
+|   ├── /&lt;id&gt;/delete/
+|   ├── /&lt;id&gt;/status/
+|   ├── /customers/
+|   ├── /customers/add/
+|   ├── /customers/&lt;id&gt;/
+|   ├── /customers/&lt;id&gt;/edit/
+|   └── /customers/&lt;id&gt;/delete/
+|
+├── /suppliers/ (Supplier Management)
+|   ├── /add/
+|   ├── /&lt;id&gt;/ (Supplier Details)
+|   ├── /&lt;id&gt;/edit/
+|   └── /&lt;id&gt;/delete/
+|
+└── /dashboard/ (Reporting & Analytics)
+    ├── /reports/
+    ├── /reports/generate/
+    ├── /reports/&lt;id&gt;/
+    ├── /reports/&lt;id&gt;/delete/
+    └── /analytics/
+            </div>
+        </section>
+
+        <section id="accounts" class="endpoint-group">
+            <h2>Accounts Endpoints</h2>
+            <p>The accounts app handles user authentication, user profiles, and user management in the system.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Login Page</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/accounts/login/</div>
+                <div class="description">
+                    <p>Displays the user login form. On POST, authenticates the user and redirects to the dashboard.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Form Parameters (POST):</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>username</td>
+                            <td>string</td>
+                            <td>User's username</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>User's password</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Logout</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/accounts/logout/</div>
+                <div class="description">
+                    <p>Logs out the currently authenticated user and redirects to the login page.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>User Profile</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/accounts/profile/</div>
+                <div class="description">
+                    <p>Displays the profile information for the currently logged-in user. Also allows updating personal information.</p>
+                </div>
+                <div class="notes">Required authentication: Yes</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>User List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/accounts/users/</div>
+                <div class="description">
+                    <p>Displays a list of all users in the system, with options to add, edit, or delete users.</p>
+                </div>
+                <div class="notes">Required role: Admin</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add User</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/accounts/users/add/</div>
+                <div class="description">
+                    <p>Form for creating a new user account with role assignment.</p>
+                </div>
+                <div class="notes">Required role: Admin</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit User</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/accounts/users/{user_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing user's information, including role assignment.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>user_id</td>
+                            <td>integer</td>
+                            <td>ID of the user to edit</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Required role: Admin</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete User</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/accounts/users/{user_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a user account.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>user_id</td>
+                            <td>integer</td>
+                            <td>ID of the user to delete</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Required role: Admin</div>
+            </div>
+        </section>
+
+        <section id="products" class="endpoint-group">
+            <h2>Products Endpoints</h2>
+            <p>The products app handles product management, including product details, categories, and images.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Product List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/products/</div>
+                <div class="description">
+                    <p>Displays a list of all products with search and filter functionality.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>q</td>
+                            <td>string</td>
+                            <td>Optional. Search term to filter products by name</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>integer</td>
+                            <td>Optional. Filter products by category ID</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Product</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/add/</div>
+                <div class="description">
+                    <p>Form for creating a new product with its details, including category, supplier, pricing, and images.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Product Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/products/{product_id}/</div>
+                <div class="description">
+                    <p>Displays detailed information about a specific product, including its images, category, and variants.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>ID of the product to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Product</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/{product_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing product's information, including updating images.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>ID of the product to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Force Update Product</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/{product_id}/force-update/</div>
+                <div class="description">
+                    <p>Special endpoint that bypasses some validation to update product information in specific situations.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>ID of the product to update</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Simple Edit Product</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/{product_id}/simple-edit/</div>
+                <div class="description">
+                    <p>Simplified form for quick updates to basic product information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>ID of the product to update</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Product</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/{product_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a product.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>ID of the product to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Product Image</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/image/{image_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a specific product image.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>image_id</td>
+                            <td>integer</td>
+                            <td>ID of the product image to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Category List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/products/categories/</div>
+                <div class="description">
+                    <p>Displays a list of all product categories.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Category</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/categories/add/</div>
+                <div class="description">
+                    <p>Form for creating a new product category.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Category</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/categories/{category_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing product category.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>category_id</td>
+                            <td>integer</td>
+                            <td>ID of the category to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Category</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/products/categories/{category_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a product category.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>category_id</td>
+                            <td>integer</td>
+                            <td>ID of the category to delete</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Note: Cannot delete categories that have associated products.</div>
+            </div>
+        </section>
+
+        <section id="inventory" class="endpoint-group">
+            <h2>Inventory Endpoints</h2>
+            <p>The inventory app handles product variants, inventory tracking, and adjustments. It also manages sizes and colors.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Inventory Overview</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/</div>
+                <div class="description">
+                    <p>Displays an overview of the inventory with summary statistics and low stock alerts.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Product Variant List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/variants/</div>
+                <div class="description">
+                    <p>Lists all product variants with their current stock levels.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product</td>
+                            <td>integer</td>
+                            <td>Optional. Filter variants by product ID</td>
+                        </tr>
+                        <tr>
+                            <td>size</td>
+                            <td>integer</td>
+                            <td>Optional. Filter variants by size ID</td>
+                        </tr>
+                        <tr>
+                            <td>color</td>
+                            <td>integer</td>
+                            <td>Optional. Filter variants by color ID</td>
+                        </tr>
+                        <tr>
+                            <td>low_stock</td>
+                            <td>boolean</td>
+                            <td>Optional. Filter to show only low stock items</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Product Variant</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/variants/add/</div>
+                <div class="description">
+                    <p>Form for creating a new product variant with its size, color, and initial stock quantity.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Product Variant Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/variants/{variant_id}/</div>
+                <div class="description">
+                    <p>Shows detailed information about a specific product variant, including its adjustment history.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>variant_id</td>
+                            <td>integer</td>
+                            <td>ID of the product variant to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Product Variant</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/variants/{variant_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing a product variant's information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>variant_id</td>
+                            <td>integer</td>
+                            <td>ID of the product variant to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Product Variant</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/variants/{variant_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a product variant.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>variant_id</td>
+                            <td>integer</td>
+                            <td>ID of the product variant to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Inventory Adjustment List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/adjustments/</div>
+                <div class="description">
+                    <p>Lists all inventory adjustments with date, type, quantity, and user information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>type</td>
+                            <td>string</td>
+                            <td>Optional. Filter by adjustment type (incoming, outgoing, adjustment)</td>
+                        </tr>
+                        <tr>
+                            <td>product</td>
+                            <td>integer</td>
+                            <td>Optional. Filter by product ID</td>
+                        </tr>
+                        <tr>
+                            <td>start_date</td>
+                            <td>date</td>
+                            <td>Optional. Filter adjustments from this date</td>
+                        </tr>
+                        <tr>
+                            <td>end_date</td>
+                            <td>date</td>
+                            <td>Optional. Filter adjustments until this date</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Inventory Adjustment</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/adjustments/add/</div>
+                <div class="description">
+                    <p>Form for adding a new inventory adjustment to increase or decrease stock for a variant.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Size List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/sizes/</div>
+                <div class="description">
+                    <p>Lists all available sizes in the system.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Size</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/sizes/add/</div>
+                <div class="description">
+                    <p>Form for adding a new size option.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Size</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/sizes/{size_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing size option.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>size_id</td>
+                            <td>integer</td>
+                            <td>ID of the size to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Size</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/sizes/{size_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a size option.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>size_id</td>
+                            <td>integer</td>
+                            <td>ID of the size to delete</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Note: Cannot delete sizes that are associated with existing product variants.</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Color List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/colors/</div>
+                <div class="description">
+                    <p>Lists all available colors in the system.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Color</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/colors/add/</div>
+                <div class="description">
+                    <p>Form for adding a new color option.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Color</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/colors/{color_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing color option.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>color_id</td>
+                            <td>integer</td>
+                            <td>ID of the color to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Color</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/inventory/colors/{color_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a color option.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>color_id</td>
+                            <td>integer</td>
+                            <td>ID of the color to delete</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Note: Cannot delete colors that are associated with existing product variants.</div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Get Product Variants (AJAX)</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/inventory/api/product-variants/</div>
+                <div class="description">
+                    <p>AJAX endpoint to fetch variants for a specific product. Returns JSON data.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>product_id</td>
+                            <td>integer</td>
+                            <td>Required. ID of the product to get variants for</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Note: This is the only JSON endpoint in the current system. It's used for dynamic form updates.</div>
+            </div>
+        </section>
+
+        <section id="orders" class="endpoint-group">
+            <h2>Orders Endpoints</h2>
+            <p>The orders app handles customer and order management, including order items and status tracking.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Order List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/orders/</div>
+                <div class="description">
+                    <p>Displays a list of all orders with filtering by status and customer.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>status</td>
+                            <td>string</td>
+                            <td>Optional. Filter orders by status</td>
+                        </tr>
+                        <tr>
+                            <td>customer</td>
+                            <td>integer</td>
+                            <td>Optional. Filter orders by customer ID</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Order</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/add/</div>
+                <div class="description">
+                    <p>Form for creating a new order with customer selection and product variant selection.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Order Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/orders/{order_id}/</div>
+                <div class="description">
+                    <p>Displays detailed information about a specific order including order items and status history.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>order_id</td>
+                            <td>integer</td>
+                            <td>ID of the order to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Order</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/{order_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing an existing order's information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>order_id</td>
+                            <td>integer</td>
+                            <td>ID of the order to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Order</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/{order_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting an order.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>order_id</td>
+                            <td>integer</td>
+                            <td>ID of the order to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Update Order Status</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/{order_id}/status/</div>
+                <div class="description">
+                    <p>Form for updating the status of an order.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>order_id</td>
+                            <td>integer</td>
+                            <td>ID of the order to update status</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Customer List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/orders/customers/</div>
+                <div class="description">
+                    <p>Lists all customers in the system with search functionality.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>q</td>
+                            <td>string</td>
+                            <td>Optional. Search term to filter customers by name or email</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Customer</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/customers/add/</div>
+                <div class="description">
+                    <p>Form for creating a new customer record.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Customer Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/orders/customers/{customer_id}/</div>
+                <div class="description">
+                    <p>Displays detailed information about a customer, including their order history.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>customer_id</td>
+                            <td>integer</td>
+                            <td>ID of the customer to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Customer</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/customers/{customer_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing a customer's information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>customer_id</td>
+                            <td>integer</td>
+                            <td>ID of the customer to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Customer</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/orders/customers/{customer_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a customer.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>customer_id</td>
+                            <td>integer</td>
+                            <td>ID of the customer to delete</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="notes">Note: Cannot delete customers with existing orders.</div>
+            </div>
+        </section>
+
+        <section id="suppliers" class="endpoint-group">
+            <h2>Suppliers Endpoints</h2>
+            <p>The suppliers app handles supplier contact information and relationships.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Supplier List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/suppliers/</div>
+                <div class="description">
+                    <p>Lists all suppliers in the system with search functionality.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>q</td>
+                            <td>string</td>
+                            <td>Optional. Search term to filter suppliers by name or contact person</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Add Supplier</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/suppliers/add/</div>
+                <div class="description">
+                    <p>Form for creating a new supplier record.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Supplier Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/suppliers/{supplier_id}/</div>
+                <div class="description">
+                    <p>Displays detailed information about a supplier, including their supplied products.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>supplier_id</td>
+                            <td>integer</td>
+                            <td>ID of the supplier to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Edit Supplier</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/suppliers/{supplier_id}/edit/</div>
+                <div class="description">
+                    <p>Form for editing a supplier's information.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>supplier_id</td>
+                            <td>integer</td>
+                            <td>ID of the supplier to edit</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Supplier</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/suppliers/{supplier_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a supplier.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>supplier_id</td>
+                            <td>integer</td>
+                            <td>ID of the supplier to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="endpoint-group">
+            <h2>Dashboard Endpoints</h2>
+            <p>The dashboard app provides reporting, analytics, and system overview functionality.</p>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Dashboard</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/dashboard/</div>
+                <div class="description">
+                    <p>Main dashboard view with summary statistics, recent orders, low stock alerts, and quick links.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Report List</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/dashboard/reports/</div>
+                <div class="description">
+                    <p>Lists all generated sales reports with options to view details or generate new reports.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Generate Report</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/dashboard/reports/generate/</div>
+                <div class="description">
+                    <p>Form for generating a new sales report by specifying type, date range, and other parameters.</p>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Report Detail</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/dashboard/reports/{report_id}/</div>
+                <div class="description">
+                    <p>Displays detailed information for a specific sales report, including all metrics and top-selling products.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>report_id</td>
+                            <td>integer</td>
+                            <td>ID of the report to display</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Delete Report</h4>
+                    <span class="method post">POST</span>
+                </div>
+                <div class="url">/dashboard/reports/{report_id}/delete/</div>
+                <div class="description">
+                    <p>Endpoint for deleting a sales report.</p>
+                </div>
+                <div class="parameters">
+                    <h5>URL Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>report_id</td>
+                            <td>integer</td>
+                            <td>ID of the report to delete</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="endpoint">
+                <div class="endpoint-header">
+                    <h4>Analytics</h4>
+                    <span class="method get">GET</span>
+                </div>
+                <div class="url">/dashboard/analytics/</div>
+                <div class="description">
+                    <p>Advanced analytics view with interactive charts and data visualization for sales, inventory, and customer metrics.</p>
+                </div>
+                <div class="parameters">
+                    <h5>Query Parameters:</h5>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>period</td>
+                            <td>string</td>
+                            <td>Optional. Time period for analytics (daily, weekly, monthly, yearly)</td>
+                        </tr>
+                        <tr>
+                            <td>start_date</td>
+                            <td>date</td>
+                            <td>Optional. Start date for custom date range</td>
+                        </tr>
+                        <tr>
+                            <td>end_date</td>
+                            <td>date</td>
+                            <td>Optional. End date for custom date range</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Spectra Clothing. All rights reserved.</p>
+        <p>This documentation was generated on June 7, 2025.</p>
+    </footer>
+</body>
+</html>
